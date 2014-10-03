@@ -4,6 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PageSim</title>
+    <script src="js/jquery-2.1.1.min.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/app.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -12,6 +13,51 @@
 <div class="container">
     <h1>PageSim <small>Simulador de Algoritmos de Substituição de Páginas</small></h1>
     <legend></legend>
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="inputTotalQuadros" class="col-sm-2 control-label">Nº de quadros da MP</label>
+                    <div class="col-sm-2">
+                        <input type="number" class="form-control" id="inputTotalQuadros">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputArquivo" class="col-sm-2 control-label">Arquivo de referências</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputArquivo">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="radio-inline">
+                            <label>
+                                <input type="radio" name="radioAlgoritmo" id="radioAlgoritmo1" value="1"> FIFO
+                            </label>
+                        </div>
+                        <div class="radio-inline">
+                            <label>
+                                <input type="radio" name="radioAlgoritmo" id="radioAlgoritmo2" value="2"> LRU
+                            </label>
+                        </div>
+                        <div class="radio-inline">
+                            <label>
+                                <input type="radio" name="radioAlgoritmo" id="radioAlgoritmo3" value="3"> Aleatória
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-play"></span> Simular</button>
+                    </div>
+                </div>
+            </form>
+            <div class="jumbotron">
+                
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
