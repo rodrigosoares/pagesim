@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
-<div class="container">
+<div class="container" ng-controller="SimuladorController">
     <h1>PageSim <small>Simulador de Algoritmos de Substituição de Páginas</small></h1>
     <legend></legend>
     <div class="row">
@@ -19,13 +19,13 @@
                 <div class="form-group">
                     <label for="inputTotalQuadros" class="col-sm-2 control-label">Nº de quadros da MP</label>
                     <div class="col-sm-2">
-                        <input type="number" class="form-control" id="inputTotalQuadros">
+                        <input type="number" class="form-control" id="inputTotalQuadros" ng-model="numQuadros">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputArquivo" class="col-sm-2 control-label">Arquivo de referências</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="inputArquivo">
+                        <input type="text" class="form-control" id="inputArquivo" ng-model="arquivo">
                     </div>
                 </div>
                 <div class="form-group">
@@ -47,13 +47,17 @@
                         </div>
                     </div>
                 </div>
+                {{teste}}
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-play"></span> Simular</button>
+                        <button type="submit" class="btn btn-primary" ng-click="simular()"><span class="glyphicon glyphicon-play"></span> Simular</button>
                     </div>
                 </div>
             </form>
         </div>
+    </div>
+    <div class="jumbotron" ng-if="simulando">
+        <p>OI</p>
     </div>
 </div>
 </body>
