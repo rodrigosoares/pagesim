@@ -13,6 +13,9 @@
 <div class="container" ng-controller="SimuladorController">
     <h1>PageSim <small>Simulador de Algoritmos de Substituição de Páginas</small></h1>
     <legend></legend>
+    <div class="alert alert-danger" role="alert" ng-if="erro">
+        <strong>Erro!</strong> Parâmetros não foram definidos corretamente.
+    </div>
     <div class="row">
         <div class="col-md-12">
             <form class="form-horizontal" role="form">
@@ -23,26 +26,26 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputArquivo" class="col-sm-2 control-label">Arquivo de referências</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" id="inputArquivo" ng-model="arquivo">
+                    <label for="inputArquivo" class="col-sm-2 control-label">Referências de páginas</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="inputArquivo" ng-model="stringReferencias">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <div class="radio-inline">
                             <label>
-                                <input type="radio" name="radioAlgoritmo" id="radioAlgoritmo1" value="1"> FIFO
+                                <input type="radio" name="radioAlgoritmo" ng-model="algoritmo" id="radioAlgoritmo1" value="1"> FIFO
                             </label>
                         </div>
                         <div class="radio-inline">
                             <label>
-                                <input type="radio" name="radioAlgoritmo" id="radioAlgoritmo2" value="2"> LRU
+                                <input type="radio" name="radioAlgoritmo" ng-model="algoritmo" id="radioAlgoritmo2" value="2"> LRU
                             </label>
                         </div>
                         <div class="radio-inline">
                             <label>
-                                <input type="radio" name="radioAlgoritmo" id="radioAlgoritmo3" value="3"> Aleatória
+                                <input type="radio" name="radioAlgoritmo" ng-model="algoritmo" id="radioAlgoritmo3" value="3"> Aleatória
                             </label>
                         </div>
                     </div>

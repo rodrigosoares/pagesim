@@ -1,11 +1,33 @@
-angular.module('pagesimApp', []).controller('SimuladorController', ['$scope', function($scope){
+angular.module('pagesimApp', []).controller('SimuladorController', ['$scope', '$http', function($scope, $http){
     $scope.teste = 'LEU O CONTROLLER';
+    $scope.erro = false;
     $scope.simulando = false;
     $scope.numQuadros = null;
-    $scope.arquivo = null;
+    $scope.algoritmo = null;
+    $scope.stringReferencias = null;
+    $scope.referencias = [];
 
     $scope.simular = function() {
-        $scope.simulando = true;
-        $scope.teste = $scope.numQuadros + ' ' + $scope.arquivo;
+        if ($scope.parametrosCorretos()) {
+            $scope.simulando = true;
+            $scope.erro = false;
+            $scope.teste = $scope.numQuadros + ' referências: ' + $scope.algoritmo;
+        }
+    }
+
+    $scope.obtemReferencias = function() {
+        var regex = /\d+/g;
+        $scope.referencias = $scope.stringReferencias.match(regex);
+    }
+
+    $scope.parametrosCorretos = function() {
+        var corretude = false;
+        if ($scope.numQuadros && $scope.algoritmo && $scope.stringReferencias) {
+            $scope.obtemReferencias();
+            corretude = true;
+        } else {
+            $scope.erro = true;
+        }
+        return corretude;
     }
 }]);
