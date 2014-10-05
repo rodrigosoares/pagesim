@@ -14,10 +14,10 @@
     <h1>PageSim <small>Simulador de Algoritmos de Substituição de Páginas</small></h1>
     <legend></legend>
     <div class="row" ng-controller="AplicacaoController">
-        <div class="alert alert-danger" role="alert" ng-if="erro">
-            <strong>Erro!</strong> Parâmetros não foram definidos corretamente.
-        </div>
         <div class="col-md-12">
+            <div class="alert alert-danger" role="alert" ng-if="erro">
+                <strong>Erro!</strong> Parâmetros não foram definidos corretamente.
+            </div>
             <form class="form-horizontal" role="form">
                 <div class="form-group">
                     <label for="inputTotalQuadros" class="col-sm-2 control-label">Nº de quadros da MP</label>
