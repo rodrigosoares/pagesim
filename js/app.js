@@ -2,6 +2,7 @@ var app = angular.module('pagesimApp', []);
 
 app.controller('AplicacaoController', ['$scope', function($scope) {
     $scope.erro = false;
+    $scope.simulando = false;
     $scope.numQuadros = null;
     $scope.algoritmo = null;
     $scope.stringReferencias = null;
@@ -10,6 +11,7 @@ app.controller('AplicacaoController', ['$scope', function($scope) {
     $scope.simular = function() {
         if ($scope.parametrosCorretos()) {
             $scope.erro = false;
+            $scope.simulando = true;
             var params = {
                 algoritmo: $scope.algoritmo,
                 numQuadros: $scope.numQuadros,
@@ -44,6 +46,7 @@ app.controller('AplicacaoController', ['$scope', function($scope) {
     }
 
     $scope.$on('zerar', function() {
+        $scope.simulando = false;
         $scope.numQuadros = null;
         $scope.algoritmo = null;
         $scope.stringReferencias = null;
@@ -57,28 +60,64 @@ app.controller('SimuladorController', ['$scope', function($scope) {
     $scope.algoritmo = null;
     $scope.algoritmoNome = null;
     $scope.numQuadros = null;
-    $scope.passo = null;
     $scope.referenciasOriginais = [];
     $scope.referenciasRestantes = [];
     $scope.memoria = []
+    $scope.passo = 0;
+    $scope.acertos = 0;
+    $scope.quadroAtual = 0;
 
     $scope.defineParametros = function(params) {
         $scope.simulando = true;
-        $scope.passo = 0;
         $scope.algoritmo = params.algoritmo;
         $scope.numQuadros = params.numQuadros;
-        $scope.referenciasOriginais = params.referencias;
-        $scope.referenciasRestantes = params.referencias;
+        $scope.referenciasOriginais = params.referencias.slice(0);
+        $scope.referenciasRestantes = params.referencias.slice(0);
     }
 
     $scope.zerar = function() {
         $scope.simulando = false;
-        $scope.passo = null;
+        $scope.passo = 0;
+        $scope.acertos = 0;
         $scope.algoritmo = null;
         $scope.numQuadros = null;
         $scope.referenciasOriginais = [];
         $scope.referenciasRestantes = [];
+        $scope.memoria = [];
+        $scope.quadroAtual = 0;
         $scope.$parent.$broadcast('zerar', '');
+    }
+
+    $scope.avancar = function() {
+        if ($scope.algoritmo == '1') {
+            $scope.simulaFIFO();
+        } else {
+            if ($scope.algoritmo == '2') {
+                $scope.simulaLRU();
+            } else {
+                $scope.simulaRandom();
+            }
+        }
+    }
+
+    $scope.simulaFIFO = function() {
+        $scope.algoritmoNome = 'First In First Out (FIFO)';
+        if ($scope.memoria.indexOf($scope.referenciasOriginais[$scope.passo]) == -1) {
+            $scope.memoria[$scope.quadroAtual] = $scope.referenciasOriginais[$scope.passo];
+            ($scope.quadroAtual < $scope.numQuadros - 1) ? ($scope.quadroAtual++) : ($scope.quadroAtual = 0);
+        } else {
+            $scope.acertos++;
+        }
+        $scope.passo++;
+        $scope.referenciasRestantes.shift();
+    }
+
+    $scope.simulaLRU = function() {
+        $scope.algoritmoNome = 'Least Recently Used (LRU)';
+    }
+
+    $scope.simulaRandom = function() {
+        $scope.algoritmoNome = 'aleatória';
     }
 
     $scope.$on('fifo', function(event, params) {
@@ -95,26 +134,4 @@ app.controller('SimuladorController', ['$scope', function($scope) {
         $scope.defineParametros(params);
         $scope.simulaRandom();
     });
-
-    $scope.simulaFIFO = function() {
-        $scope.algoritmoNome = 'First In First Out (FIFO)';
-        var quadro = -1;
-        $scope.referencias.forEach(function(referencia) {
-            (quadro < numQuadros - 1) ? (quadro++) : (quadro = 0);
-            if (memoria.indexOf(referencia) == -1) {
-                memoria[quadro] = referencia;
-
-            } else {
-
-            }
-        });
-    }
-
-    $scope.simulaLRU = function() {
-        $scope.algoritmoNome = 'Least Recently Used (LRU)';
-    }
-
-    $scope.simulaRandom = function() {
-        $scope.algoritmoNome = 'aleatória';
-    }
 }]);
