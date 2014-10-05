@@ -10,13 +10,13 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
-<div class="container" ng-controller="SimuladorController">
+<div class="container">
     <h1>PageSim <small>Simulador de Algoritmos de Substituição de Páginas</small></h1>
     <legend></legend>
-    <div class="alert alert-danger" role="alert" ng-if="erro">
-        <strong>Erro!</strong> Parâmetros não foram definidos corretamente.
-    </div>
-    <div class="row">
+    <div class="row" ng-controller="AplicacaoController">
+        <div class="alert alert-danger" role="alert" ng-if="erro">
+            <strong>Erro!</strong> Parâmetros não foram definidos corretamente.
+        </div>
         <div class="col-md-12">
             <form class="form-horizontal" role="form">
                 <div class="form-group">
@@ -59,8 +59,20 @@
             </form>
         </div>
     </div>
-    <div class="jumbotron" ng-if="simulando">
-        <p>OI</p>
+    <div class="row" ng-controller="SimuladorController">
+        <div class="jumbotron" ng-if="simulando">
+            <h4>Política de substituição <strong>{{algoritmoNome}}</strong>, com <strong>{{numQuadros}}</strong> quadros de memória principal.</h4>
+            <dl class="dl-horizontal">
+                <dt>Seq. de páginas</dt>
+                <dd>{{referenciasOriginais}}</dd>
+                <dt>Refs. restantes</dt>
+                <dd>{{referenciasRestantes}}</dd>
+                <dt>Memória corrente</dt>
+                <dd>{{memoria}}</dd>
+            </dl>
+            <button class="btn btn-primary" ng-click=""><span class="glyphicon glyphicon-step-forward"></span></button>
+            <button class="btn btn-default" ng-click="zerar()"><span class="glyphicon glyphicon-repeat"></span></button>
+        </div>
     </div>
 </div>
 </body>
