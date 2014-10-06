@@ -149,6 +149,19 @@ app.controller('SimuladorController', ['$scope', function($scope) {
 
     $scope.simulaRandom = function() {
         $scope.algoritmoNome = 'aleatória';
+        if ($scope.memoria.indexOf($scope.referenciasOriginais[$scope.passo]) == -1) {
+            var pos = null;
+            if ($scope.memoria.length < $scope.numQuadros) {
+                pos = $scope.memoria.length;
+            } else {
+                pos = Math.floor(Math.random() * $scope.numQuadros);
+            }
+            $scope.memoria[pos] = $scope.referenciasOriginais[$scope.passo];
+        } else {
+            $scope.acertos++;
+        }
+        $scope.passo++;
+        $scope.referenciasRestantes.shift();
     }
 
     $scope.$on('fifo', function(event, params) {
