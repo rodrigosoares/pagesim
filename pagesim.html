@@ -68,6 +68,10 @@
                 <dd>{{referenciasRestantes}}</dd>
                 <dt>Memória corrente</dt>
                 <dd>{{memoria}}</dd>
+                <dt>Passo corrente</dt>
+                <dd>{{passo}}</dd>
+                <dt>Taxa de acertos</dt>
+                <dd>{{acertos}}/{{passo}} ({{((acertos/passo) * 100).toFixed(2)}}%)</dd>
             </dl>
             <button class="btn btn-primary" ng-click="avancar()" ng-class="{ disabled: !referenciasRestantes.length }"><span class="glyphicon glyphicon-step-forward"></span></button>
             <button class="btn btn-default" ng-click="zerar()"><span class="glyphicon glyphicon-repeat"></span></button>

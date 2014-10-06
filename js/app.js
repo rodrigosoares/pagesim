@@ -114,6 +114,37 @@ app.controller('SimuladorController', ['$scope', function($scope) {
 
     $scope.simulaLRU = function() {
         $scope.algoritmoNome = 'Least Recently Used (LRU)';
+        var hit = false;
+        var pos = null;
+        $scope.memoria.forEach(function(quadro, indice) {
+            if (!hit && quadro.pagina == $scope.referenciasOriginais[$scope.passo]) {
+                hit = true;
+                pos = indice;
+            }
+        });
+        if (hit) {
+            $scope.memoria[pos].tempo = $scope.passo;
+            $scope.acertos++;
+        } else {
+            var quadro = {
+                pagina: $scope.referenciasOriginais[$scope.passo],
+                tempo: $scope.passo
+            }
+            if ($scope.memoria.length < $scope.numQuadros) {
+                pos = $scope.memoria.length;
+            } else {
+                var tempo = $scope.passo;
+                $scope.memoria.forEach(function(quadro, indice) {
+                    if (quadro.tempo < tempo) {
+                        tempo = quadro.tempo;
+                        pos = indice;
+                    }
+                });
+            }
+            $scope.memoria[pos] = quadro;
+        }
+        $scope.passo++;
+        $scope.referenciasRestantes.shift();
     }
 
     $scope.simulaRandom = function() {
