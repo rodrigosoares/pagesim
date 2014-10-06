@@ -62,9 +62,9 @@
         <div class="jumbotron" ng-if="simulando">
             <h4>Política de substituição <strong>{{algoritmoNome}}</strong>, com <strong>{{numQuadros}}</strong> quadros de memória principal.</h4>
             <dl class="dl-horizontal">
-                <dt>Seq. de páginas</dt>
+                <dt>Sequência de páginas</dt>
                 <dd>{{referenciasOriginais}}</dd>
-                <dt>Refs. restantes</dt>
+                <dt>Referências restantes</dt>
                 <dd>{{referenciasRestantes}}</dd>
                 <dt>Memória corrente</dt>
                 <dd>{{memoria}}</dd>
@@ -73,8 +73,10 @@
                 <dt>Taxa de acertos</dt>
                 <dd>{{acertos}}/{{passo}} ({{((acertos/passo) * 100).toFixed(2)}}%)</dd>
             </dl>
-            <button class="btn btn-primary" ng-click="avancar()" ng-class="{ disabled: !referenciasRestantes.length }"><span class="glyphicon glyphicon-step-forward"></span></button>
-            <button class="btn btn-default" ng-click="zerar()"><span class="glyphicon glyphicon-repeat"></span></button>
+            <div class="col-sm-offset-2">
+                <button class="btn btn-primary" ng-click="avancar()" ng-class="{ disabled: !referenciasRestantes.length }"><span class="glyphicon glyphicon-step-forward"></span></button>
+                <button class="btn btn-default" ng-click="zerar()"><span class="glyphicon glyphicon-repeat"></span></button>
+            </div>
         </div>
     </div>
 </div>
