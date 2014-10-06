@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en" ng-app="pagesimApp">
 <head>
+    <!-- Desenvolvido por Rodrigo Soares e Silva -->
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PageSim</title>
@@ -74,8 +75,8 @@
                 <dd>{{acertos}}/{{passo}} ({{((acertos/passo) * 100).toFixed(2)}}%)</dd>
             </dl>
             <div class="col-sm-offset-2">
-                <button class="btn btn-primary" ng-click="avancar()" ng-class="{ disabled: !referenciasRestantes.length }"><span class="glyphicon glyphicon-step-forward"></span></button>
-                <button class="btn btn-default" ng-click="zerar()"><span class="glyphicon glyphicon-repeat"></span></button>
+                <button class="btn btn-primary" ng-click="avancar()" ng-class="{ disabled: !referenciasRestantes.length }"><span class="glyphicon glyphicon-step-forward"></span> Avançar</button>
+                <button class="btn btn-default" ng-click="zerar()"><span class="glyphicon glyphicon-repeat"></span> Zerar</button>
             </div>
         </div>
     </div>
